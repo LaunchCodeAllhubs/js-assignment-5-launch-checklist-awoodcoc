@@ -28,23 +28,3 @@ window.addEventListener("load", function () {
   //   let copilotNameInput = document.querySelector("input[name=copilotName]");
   //   let fuelLevelInput = document.querySelector("input[name=fuelLevel]");
   //   let cargoMassInput = document.querySelector("input[name=cargoMass]");
-  //   let list = document.getElementById("faultyItems");
-  //   list.innerHTML = `
-  //                   <ol>
-  //                   <li id="pilotStatus" data-testid="pilotStatus">Pilot Ready</li>
-  //                   <li id="copilotStatus" data-testid="copilotStatus">Co-pilot Ready</li>
-  //                   <li id="fuelStatus" data-testid="fuelStatus">Fuel level high enough for launch</li>
-  //                   <li id="cargoStatus" data-testid="cargoStatus">Cargo mass low enough for launch</li>
-  //               </ol>
-  //   `;
-  //   // list.innerHTML goes first / above
-  //   if (
-  //     pilotNameInput === "" ||
-  //     copilotNameInput === "" ||
-  //     fuelLevelInput === "" ||
-  //     cargoMassInput === ""
-  //   ) {
-  //     alert("All fields are required!");
-  //     event.preventDefault();
-  //   }
-  // });

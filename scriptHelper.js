@@ -35,23 +35,77 @@ function validateInput(testInput) {
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-  let form = document.querySelector("form");
-  let list = document.getElementById("faultyItems");
-  form.addEventListener("submit", function (event) {
-    let pilotNameInput = document.querySelector("input[name=pilotName]");
-    let copilotNameInput = document.querySelector("input[name=copilotName]");
-    let fuelLevelInput = document.querySelector("input[name=fuelLevel]");
-    let cargoMassInput = document.querySelector("input[name=cargoMass]");
-    if (
-      pilotNameInput === "" ||
-      copilotNameInput === "" ||
-      fuelLevelInput === "" ||
-      cargoMassInput === ""
-    ) {
-      alert("All fields are required!");
-      event.preventDefault();
-    }
-  });
+  let items = document.getElementById("faultyItems");
+  let launchStatus = document.getElementById("launchStatus");
+  let pilotStatus = document.getElementById("pilotStatus");
+  let copilotStatus = document.getElementById("copilotStatus");
+  let fuelStatus = document.getElementById("fuelStatus");
+  let cargoStatus = document.getElementById("cargoStatus");
+  let goodToGo = true;
+
+  if (
+    validateInput(pilot) === "Empty" ||
+    validateInput(pilot) === "Is a Number"
+  ) {
+    alert("Invalid input entered. Enter the pilot's name.");
+    preventDefault();
+  } else {
+    pilotStatus.innerHTML = `Pilot ${pilot} Ready`;
+  }
+
+  if (
+    validateInput(copilot) === "Empty" ||
+    validateInput(copilot) === "Is a Number"
+  ) {
+    alert("Invalid input entered. Enter the copilot's name.");
+    preventDefault();
+  } else {
+    copilotStatus.innerHTML = `Co-pilot ${copilot} Ready`;
+  }
+
+  if (
+    validateInput(fuelLevel) === "Empty" ||
+    validateInput(fuelLevel) === "Not a Number"
+  ) {
+    alert("Invalid input entered. Enter a number.");
+    preventDefault();
+  } else {
+    fuelStatus.innerHTML = fuelLevel;
+  }
+
+  if (
+    validateInput(cargoLevel) === "Empty" ||
+    validateInput(cargoLevel) === "Not a Number"
+  ) {
+    alert("Invalid input entered. Enter a number.");
+    preventDefault();
+  } else {
+    cargoStatus.innerHTML = cargoLevel;
+  }
+
+  if (fuelLevel < 10000) {
+    items.style.visibility = "visible";
+    fuelStatus.innerHTML = "There is not enough fuel for this journey.";
+    launchStatus.innerHTML = "Shuttle not ready for launch";
+    launchStatus.color = "#C7254E";
+  }
+
+  if (cargoLevel > 10000) {
+    items.style.visibility = "visible";
+    cargoStatus.innerHTML = "There is too much cargo for this journey.";
+    launchStatus.innerHTML = "Shuttle not ready for launch";
+    launchStatus.innerHTML.color = "#C7254E";
+  }
+
+  if (
+    fuelLevel >= 10000 &&
+    cargoLevel <= 10000 &&
+    typeof pilot == "string" &&
+    typeof copilot == "string"
+  ) {
+    launchStatus.innerHTML.color = "#419F6A";
+    launchStatus.innerHTML = "Shuttle is ready for launch";
+  }
 }
 
 async function myFetch() {
